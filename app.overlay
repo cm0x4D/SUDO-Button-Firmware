@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) 2023 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	hid_dev_0: hid_dev_0 {
+		compatible = "zephyr,hid-device";
+		interface-name = "HID0";
+		protocol-code = "keyboard";
+		in-report-size = <64>;
+		in-polling-period-us = <1000>;
+	};
+
+	buttons {
+		compatible = "gpio-keys";
+		button0: button_0 {
+			gpios = < &gpio0 0x14 0x11 >;
+			label = "Push button switch 0";
+			zephyr,code = < INPUT_KEY_1 >;
+		};
+	};
+
+	aliases {
+	    sw0 = &button0;
+	};
+};
